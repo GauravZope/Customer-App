@@ -1,0 +1,9 @@
+<mat-nav-list>
+    <h2 matSubheader>Pages</h2>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="'/no-access'">posts</a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="'configurator'"  (click)="toggleSideBar()">posts</a>
+    <mat-divider></mat-divider>
+    <h2 matSubheader>Security</h2>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="login">sec master</a>
+    <mat-divider></mat-divider>
+</mat-nav-list>

@@ -1,0 +1,17 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+
+    <app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
+  
+    <mat-sidenav-container (backdropClick)="sideBarOpen=!sideBarOpen;snav.toggle()" class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [fixedInViewport]="mobileQuery.matches" 
+        (keydown.escape)="sideBarOpen=!sideBarOpen;snav.toggle()"  disableClose mode="push" [opened]="sideBarOpen"  fixedTopGap="56">
+        <app-sidebar (toggleSideBarForMe)="sideBarToggler()"></app-sidebar>
+      </mat-sidenav>
+      
+      <mat-sidenav-content >
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  
+    <app-footer></app-footer>
+  </div>
