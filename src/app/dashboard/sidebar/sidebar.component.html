@@ -1,9 +1,32 @@
-<mat-nav-list>
+<mat-nav-list fxFlex fxLayout="column" fxLayoutAlign="flex-end">
     <h2 matSubheader>Pages</h2>
-    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="'/no-access'">posts</a>
-    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="'configurator'"  (click)="toggleSideBar()">posts</a>
+    <button style="width: 100%" routerLink="dashboard"  routerLinkActive="mat-bg-accent mat-elevation-z1"  mat-button>ABC</button>
+    <button style="width: 100%" routerLink="dashboard"  routerLinkActive="mat-bg-accent mat-elevation-z1"  mat-button>ABC1</button>
+
     <mat-divider></mat-divider>
-    <h2 matSubheader>Security</h2>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="login">sec master</a>
+    <h2 matSubheader>Masters</h2>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Common Masters
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <li routerLinkActive="open">
+            <button style="width: 100%" routerLink="dashboard"  routerLinkActive="mat-bg-accent mat-elevation-z1"  mat-button>ABC</button>
+        </li>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Security Masters
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <li routerLinkActive="open">
+                <button style="width: 100%" routerLink="dashboard"  routerLinkActive="mat-bg-accent mat-elevation-z1"  mat-button>ABC</button>
+            </li>
+        </mat-expansion-panel>
+
+
     <mat-divider></mat-divider>
 </mat-nav-list>

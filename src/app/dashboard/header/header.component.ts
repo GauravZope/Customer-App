@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Observable, throwError } from 'rxjs';
+import { User } from 'src/app/Models/user-model';
+import { map, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +13,16 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent implements OnInit {
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
+  user: User;
 
   constructor(private auth:AuthService, private router: Router) { }
-
+  user$: Observable<User>;
   ngOnInit(): void {
-    // this.auth.currentUser();
+   this.user$ = this.auth.currentUser;
+   this.user$.subscribe(data =>{
+     console.log(data)
+   }
+   )
   }
   toggleSideBar() {
     this.toggleSideBarForMe.emit();

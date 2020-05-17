@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../Models/user-model';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   constructor(private http : HttpClient) { }
-
+ 
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/x-www-form-urlencoded',
@@ -18,13 +19,12 @@ export class AuthService {
   };
   
   login(userName, password):Observable<boolean>{
-    console.log(userName+ "  "+password)
     const body = new HttpParams()
       .set('username', userName)
       .set('password', password)
       .set('grant_type', 'password');
 
-    return this.http.post<any>('/auth',body,this.httpOptions)
+    return this.http.post<any>('/auth/oauth/token',body,this.httpOptions)
     .pipe(map(result => {
       localStorage.setItem('token',result.access_token);
       return true;
@@ -50,7 +50,11 @@ export class AuthService {
     let token = localStorage.getItem('token');
     if(!token)
       return null;
-    console.log("token "+jwtHelper.decodeToken(token).authorities)
-    return jwtHelper.decodeToken(token);
+    // console.log(jwtHelper.decodeToken(token))
+    let userName = jwtHelper.decodeToken(token).user_name;
+    return this.http.get<any>('/auth/oauth/user',{
+      params: {
+        username: userName}
+      });
   }
 }

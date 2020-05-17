@@ -18,18 +18,20 @@
                         <mat-icon>help_outline</mat-icon>
                     </button>
                 </li>
-                <li>
+                <li *ngIf="user$ | async as user;">
                     <button mat-button [matMenuTriggerFor]="menu">
                         <mat-icon>person_outline</mat-icon>
                     </button>
-                    <mat-menu #menu="matMenu">
+                    <mat-menu #menu="matMenu" >
                         <div class="profile-card">
                                 <div class="header">
-                                    <h2>Soufiane FADIL</h2>
-                                    <h4>example@email.com</h4>
+                                    <h2 >{{ user.employee.firstName}} {{user.employee.lastName}}</h2>
+                                    <h4>{{ user.employee.emailId}}</h4>
                                 </div>
                                 <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Soufiane FADIL">
                         </div>
+                        <mat-divider></mat-divider>
+                            <h5 style="padding:10px 10px 0px">Last Login Date: {{ user.lastLoginDate | date:'medium'}}</h5>
                         <mat-divider></mat-divider>
                         <button mat-menu-item (click)="signOut()">
                             <mat-icon>exit_to_app</mat-icon>

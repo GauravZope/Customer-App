@@ -1,3 +1,4 @@
+import { NavigationService } from './sidebar/navigation.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,7 +12,6 @@ import { NoAccessComponent } from './no-access/no-access.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MaterialModule } from './matrial-modules';
 
-
 @NgModule({
   declarations: [ DefaultComponent, HeaderComponent, FooterComponent, SidebarComponent, NoAccessComponent, PageNotFoundComponent],
   imports: [
@@ -19,6 +19,12 @@ import { MaterialModule } from './matrial-modules';
     dashboardRoutingModule,
     MaterialModule,
     FlexLayoutModule
+  ],
+  providers:[
+    NavigationService,
+   
+  ],exports:[
+  
   ]
 })
 export class dashboardModule { }

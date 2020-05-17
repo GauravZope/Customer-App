@@ -8,7 +8,7 @@
     },
 
     "/auth/*": {
-      "target": "http://localhost:8081/oauth/token",
+      "target": "http://localhost:8081/",
       "secure": true,
       "changeOrigin": true,
       "logLevel": "debug",
