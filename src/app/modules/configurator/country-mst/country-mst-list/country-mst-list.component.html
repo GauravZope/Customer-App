@@ -1,2 +1,33 @@
-<p>country-mst-list works!</p>
-{{countries |async}}
+<p>country-mst-list works!123</p>
+{{ countries }}
+
+
+<table>
+    <th>
+        <tr>
+            <td>
+                <h2>Id</h2>
+            </td>
+            <td>
+                <h2>Country Code</h2>
+            </td>
+            <td>
+                <h2>Country Name</h2>
+            </td>
+        </tr>
+    </th>
+    <tbody>
+        <tr *ngFor='let country of countries'>
+            <td>
+                <h4>{{ country.countryId }}</h4>
+            </td>
+            <td>
+                <h4>{{ country.countryCode }}</h4>
+            </td>
+            <td>
+                <h4>{{ country.countryName }}</h4>
+            </td>
+        </tr>
+    </tbody>
+</table>    
+Time: {{ time | async }}
