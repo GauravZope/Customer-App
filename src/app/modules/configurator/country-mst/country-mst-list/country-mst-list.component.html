@@ -1,33 +1,35 @@
-<p>country-mst-list works!123</p>
-{{ countries }}
 
+<div><button mat-raised-button color="primary"><span class="material-icons">
+    add
+    </span></button>
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
+</div>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-<table>
-    <th>
-        <tr>
-            <td>
-                <h2>Id</h2>
-            </td>
-            <td>
-                <h2>Country Code</h2>
-            </td>
-            <td>
-                <h2>Country Name</h2>
-            </td>
-        </tr>
-    </th>
-    <tbody>
-        <tr *ngFor='let country of countries'>
-            <td>
-                <h4>{{ country.countryId }}</h4>
-            </td>
-            <td>
-                <h4>{{ country.countryCode }}</h4>
-            </td>
-            <td>
-                <h4>{{ country.countryName }}</h4>
-            </td>
-        </tr>
-    </tbody>
-</table>    
-Time: {{ time | async }}
+    <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> Index </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;">{{ this.paginator.pageIndex == 0 ?  i+1 : i+1 + this.paginator.pageIndex * this.paginator.pageSize}}</mat-cell>
+      </ng-container>
+    <!-- Id Column -->
+    <ng-container matColumnDef="countryId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header  [style.display]="'none'"> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"  [style.display]="'none'"> {{element.countryId}} </mat-cell>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="countryCode" sticky>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Country Code </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.countryCode}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="countryName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Country Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.countryName}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; ; let i = index"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

@@ -6,6 +6,7 @@ import { ConfiguratorComponent } from './configurator.component';
 import { CountryMstFormComponent } from 'src/app/modules/configurator/country-mst/country-mst-form/country-mst-form.component';
 import { CountryMstListComponent } from 'src/app/modules/configurator/country-mst/country-mst-list/country-mst-list.component';
 import { CountryMstEditComponent } from 'src/app/modules/configurator/country-mst/country-mst-edit/country-mst-edit.component';
+import { MaterialModule } from '../../matrial-modules';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CountryMstEditComponent } from 'src/app/modules/configurator/country-ms
   ],
   imports: [
     CommonModule,
-    ConfiguratorRoutingModule
+    ConfiguratorRoutingModule,
+    MaterialModule
   ]
 })
 export class ConfiguratorModule { }
