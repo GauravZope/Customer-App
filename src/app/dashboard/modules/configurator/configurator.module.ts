@@ -5,8 +5,11 @@ import { ConfiguratorRoutingModule } from './configurator-routing.module';
 import { ConfiguratorComponent } from './configurator.component';
 import { CountryMstFormComponent } from 'src/app/modules/configurator/country-mst/country-mst-form/country-mst-form.component';
 import { CountryMstListComponent } from 'src/app/modules/configurator/country-mst/country-mst-list/country-mst-list.component';
-import { CountryMstEditComponent } from 'src/app/modules/configurator/country-mst/country-mst-edit/country-mst-edit.component';
 import { MaterialModule } from '../../matrial-modules';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,12 +17,16 @@ import { MaterialModule } from '../../matrial-modules';
     ConfiguratorComponent,
     CountryMstListComponent,
     CountryMstFormComponent,
-    CountryMstEditComponent
   ],
+  entryComponents: [ CountryMstFormComponent],
   imports: [
     CommonModule,
-    ConfiguratorRoutingModule,
-    MaterialModule
+    ConfiguratorRoutingModule, 
+    HttpClientModule,
+    // BrowserAnimationsModule,
+    // FlexLayoutModule,
+    MaterialModule,
+    ReactiveFormsModule,
   ]
 })
 export class ConfiguratorModule { }

@@ -1,1 +1,31 @@
-<p>country-mst-form works!</p>
+<mat-toolbar>
+    <span>{{(service.key != 'New Country')?"Modify Country":"New Country"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="service.countryMstForm" class="signup4-form grey-100" (ngSubmit)="onSubmit()">
+    <mat-form-field   class="invisible example-full-width">
+        <mat-label>Country Id</mat-label>
+        <input matInput formControlName="countryId"  name="countryId" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Country Code</mat-label>
+        <input matInput formControlName="countryCode" name="countryCode" />
+        <mat-error *ngIf="service.countryMstForm.get('countryCode').hasError('shouldBeUnique')">Country Code should be unique.</mat-error>
+        <mat-error *ngIf="service.countryMstForm.get('countryCode').hasError('required')">Country Code is required.</mat-error>
+        <mat-error *ngIf="service.countryMstForm.get('countryCode').hasError('cannotContainSpace')">Country Code can not contains space.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" >
+        <mat-label>Country Name</mat-label>
+        <input matInput formControlName="countryName" name="countryName" />
+        <mat-error *ngIf="service.countryMstForm.get('countryName').hasError('required')">Country Name is required.</mat-error>
+        <mat-error *ngIf="service.countryMstForm.get('countryName').hasError('maxlength')">Country Name should be less than {{ countryName.errors.maxlength.requiredLength}} characters.</mat-error>
+        <mat-error *ngIf="service.countryMstForm.get('countryName').hasError('cannotContainSpace')">Country Name can not contains space.</mat-error>
+    </mat-form-field>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center" style="margin-top: 20px;">
+        <button mat-raised-button class="full-width" type="submit" color="primary" [disabled]="!service.countryMstForm.valid">Submit</button>
+    </div>
+</form>
