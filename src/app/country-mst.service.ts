@@ -13,7 +13,7 @@ export class CountryMstService {
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   private $key: string;
-
+  private headers = new HttpHeaders().set('access-control-allow-origin',"*");
   get key() {
     return this.$key;
   }
@@ -35,7 +35,7 @@ export class CountryMstService {
   }
 
   getAllCountries() {
-    return this.http.get<any>('/api/countries/getAll');
+    return this.http.get<any>('http://localhost:8080/countries/');
   }
 
   populateForm(country: Country) {
@@ -48,12 +48,12 @@ export class CountryMstService {
 
   deleteCountryRecord(countryId) {
     console.log("record deleted successfully!!!")
-    return this.http.delete(`/api/countries/${countryId}`);
+    return this.http.delete(`http://localhost:8080/countries/${countryId}`);
   }
 
   saveCountryMasterDetails(value: Country) {
     console.log("Saving country master details")
-    return this.http.post('/api/countries/',value);
+    return this.http.post('http://localhost:8080/countries/',value);
   }
 
   updateCountryMasterDetails(value: Country) {
@@ -64,7 +64,7 @@ export class CountryMstService {
     };
     if(value.countryId != null && value.countryId != 0){
       const countryId = value.countryId;
-      return this.http.put(`/api/countries/${countryId}`,value,httpOptions);
+      return this.http.put(`http://localhost:8080/countries/${countryId}`,value,httpOptions);
     }else{
       throw Error("Country Id not found for record")
     }

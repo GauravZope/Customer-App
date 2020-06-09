@@ -11,12 +11,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './dashboard/matrial-modules';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { MatTableComponent } from './mat-table/mat-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ForgotPasswordComponent,
+    MatTableComponent,
 
   ],
   imports: [

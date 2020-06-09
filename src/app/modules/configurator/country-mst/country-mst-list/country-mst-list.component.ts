@@ -66,7 +66,9 @@ export class CountryMstListComponent implements OnInit {
 
   onDelete(countryId){
     if(confirm('Are you sure to delete this record ?')){
-    this.countryService.deleteCountryRecord(countryId);
+    this.countryService.deleteCountryRecord(countryId).subscribe(
+      res=> console.log("deleted successfully!!!")
+    );
     }
   }
 }

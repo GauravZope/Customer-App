@@ -1,4 +1,5 @@
 import { Employee } from './employee-model';
+import { Role } from './roles.model';
 
 export class User{
     userId: number;
@@ -13,7 +14,7 @@ export class User{
     firstLoginStatus:boolean;
     lastLoginDate:Date;
     employee:Employee;
-
+    roles : Role[];
     constructor(obj?: any) {
         Object.assign(this, obj);
     }

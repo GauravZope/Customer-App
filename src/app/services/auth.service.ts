@@ -24,7 +24,7 @@ export class AuthService {
       .set('password', password)
       .set('grant_type', 'password');
 
-    return this.http.post<any>('/auth/oauth/token',body,this.httpOptions)
+    return this.http.post<any>('http://localhost:8081/oauth/token',body,this.httpOptions)
     .pipe(map(result => {
       localStorage.setItem('token',result.access_token);
       return true;
@@ -50,11 +50,22 @@ export class AuthService {
     let token = localStorage.getItem('token');
     if(!token)
       return null;
-    // console.log(jwtHelper.decodeToken(token))
     let userName = jwtHelper.decodeToken(token).user_name;
-    return this.http.get<any>('/auth/oauth/user',{
+    return this.http.get<any>('http://localhost:8081/oauth/user',{
       params: {
         username: userName}
       });
   }
+
+  public get userAuthorities(){
+    let jwtHelper = new JwtHelperService();
+    let token = localStorage.getItem('token');
+    if(!token)
+      return null;
+    let user = jwtHelper.decodeToken(token);
+    if(user != null && user.authorities != null)
+      return user.authorities;
+    return null
+  }
+  
 }
