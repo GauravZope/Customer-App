@@ -8,7 +8,7 @@
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
     <ng-container matColumnDef="index">
-        <mat-header-cell *matHeaderCellDef> Index </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Index </mat-header-cell> 
         <mat-cell *matCellDef="let element; let i = index;">{{ this.paginator.pageIndex == 0 ?  i+1 : i+1 + this.paginator.pageIndex * this.paginator.pageSize}}</mat-cell>
       </ng-container>
     <!-- Id Column -->

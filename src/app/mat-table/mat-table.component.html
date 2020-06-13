@@ -1,1 +1,47 @@
-<p>mat-table works!</p>
+<div>
+  <button mat-raised-button color="primary" >
+    <mat-icon (click)="emitter.emit('add')">add</mat-icon>
+  </button>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+  </mat-form-field>
+</div>
+<mat-table [dataSource]="dataSource" class=" mat-elevation-z8" matSort>
+  <ng-container *ngFor="let col of tableCols; let i = index" [matColumnDef]="col.key">
+    <mat-header-cell mat-sort-header *matHeaderCellDef [disabled]="!tableCols[i]['sort']" >{{ tableCols[i]["display"] }}</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element">
+        <!-- sticky -->
+      <!-- Checking if it's a normal column or column with specific config -->
+      <ng-container *ngIf="!col.config; else hasConfig" sticky="tableCols[i]['sticky']" >
+        {{ element[col.key] }}
+      </ng-container>
+      <!-- If this column has a config object so we will display depending
+      on our setted config -->
+      <ng-template #hasConfig>
+        <!-- if this attribute is a boolean, we will show values from config
+        object depending on his state -->
+        <ng-container *ngIf="col.config.isBoolean">
+          {{ showBooleanValue(element, col) }}
+        </ng-container>
+        <!-- if this attribute is a date, we will format it depending on format
+          value in config object -->
+        <ng-container *ngIf="col.config.isDate">
+          {{ element[col.key]  | date: col.config.format }}
+        </ng-container>
+        <!-- if this column is action, we will loop through each action and show
+          it as a mat-button -->
+        <ng-container *ngIf="col.config.isAction">
+          <button *ngFor="let action of col.config.actions" (click)="emitter.emit(action)" mat-button>
+              <mat-icon *ngIf="action =='delete'; else otherBtn" color="warn" >{{action}}</mat-icon>
+              <ng-template #otherBtn><mat-icon>{{action}}</mat-icon></ng-template>
+          </button>
+          
+        </ng-container>
+      </ng-template>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row mat-header-row *matHeaderRowDef="keys;sticky: true"></mat-header-row>
+  <mat-row mat-row *matRowDef="let row; columns: keys;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator>

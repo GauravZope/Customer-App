@@ -18,7 +18,6 @@ import { MatTableComponent } from './mat-table/mat-table.component';
     AppComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    MatTableComponent,
 
   ],
   imports: [
@@ -38,6 +37,7 @@ import { MatTableComponent } from './mat-table/mat-table.component';
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[  ]
 })
 export class AppModule { }

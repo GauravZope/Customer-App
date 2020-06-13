@@ -4,10 +4,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ConfiguratorComponent } from './configurator.component';
+import { MatTableComponent } from 'src/app/mat-table/mat-table.component';
+import { StateMstListComponent } from 'src/app/modules/configurator/state-mst/state-mst-list/state-mst-list.component';
 
 const routes: Routes = [
   { path: '', component: ConfiguratorComponent },
   { path: 'country-mst-list', component: CountryMstListComponent },
+  { path: 'state-mst-list', component: StateMstListComponent },
 ];
 
 @NgModule({
@@ -15,3 +18,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ConfiguratorRoutingModule { }
+
+

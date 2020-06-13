@@ -1,3 +1,5 @@
+import { MatTableModule } from '@angular/material/table';
+import { MatTableComponent } from './../../../mat-table/mat-table.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,9 +9,10 @@ import { CountryMstFormComponent } from 'src/app/modules/configurator/country-ms
 import { CountryMstListComponent } from 'src/app/modules/configurator/country-mst/country-mst-list/country-mst-list.component';
 import { MaterialModule } from '../../matrial-modules';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StateMstFormComponent } from 'src/app/modules/configurator/state-mst/state-mst-form/state-mst-form.component';
+import { StateMstListComponent } from 'src/app/modules/configurator/state-mst/state-mst-list/state-mst-list.component';
+import { DummyMatTableModule } from 'src/app/mat-table/mat-table.module';
 
 
 @NgModule({
@@ -17,6 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ConfiguratorComponent,
     CountryMstListComponent,
     CountryMstFormComponent,
+    StateMstFormComponent,
+    StateMstListComponent
   ],
   entryComponents: [ CountryMstFormComponent],
   imports: [
@@ -26,7 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     // BrowserAnimationsModule,
     // FlexLayoutModule,
     MaterialModule,
+    MatTableModule,
     ReactiveFormsModule,
+    DummyMatTableModule,
   ]
 })
 export class ConfiguratorModule { }
